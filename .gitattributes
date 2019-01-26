@@ -1,0 +1,5 @@
+* text=auto
+
+*.sln text eol=crlf
+*.asset text eol=crlf
+*.meta text eol=crlf
