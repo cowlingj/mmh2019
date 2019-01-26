@@ -3,22 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
-public class Behaviour : MonoBehaviour
+public class ShipBehaviour : MonoBehaviour
 {
 
-    public GameObject ship; 
-
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        float vertical = CrossPlatformInputManager.GetAxis("Veritcal");
-        float horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
+        const float multiplier = 0.1F;
 
-        bool returnkey = CrossPlatformInputManager.GetButton("return");
+        Component ship = GetComponent<Component>();
+<<<<<<< Updated upstream
+
+        float vertical = multiplier * CrossPlatformInputManager.GetAxis("Vertical");
+        float horizontal = multiplier * CrossPlatformInputManager.GetAxis("Horizontal");
+
+        bool returnkey = CrossPlatformInputManager.GetButton("Submit");
 
         if (returnkey)
         {
-            //GotoPlanet
+
+            Planetary.GoToPlanet(ship);
         }
         else
         {
