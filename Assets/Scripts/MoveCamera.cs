@@ -5,11 +5,17 @@ using UnityEngine;
 public class MoveCamera : MonoBehaviour
 {
 
-    public GameObject target;
-    public Vector3 cameraOffset;
+  public GameObject target;
+  private Vector3 cameraOffset;
 
-    // Update is called once per frame
-      void Update() {
-          transform.position = target.transform.position + cameraOffset;
-      }
+  private void Awake()
+  {
+    cameraOffset = GetComponent<Component>().transform.position - target.transform.position;
+  }
+
+  // Update is called once per frame
+  void Update()
+  {
+    transform.position = target.transform.position + cameraOffset;
+  }
 }
