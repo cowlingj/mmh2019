@@ -11,7 +11,7 @@ public class Movement
         currentv.x = currentv.x + horizontal;
         currentv.y = currentv.y + vertical;
         ship.transform.position = currentv;
-        Debug.Log("Position now: x = " + currentv.x + " y = " + currentv.y);
+        //Debug.Log("Position now: x = " + currentv.x + " y = " + currentv.y);
     }
 
 }

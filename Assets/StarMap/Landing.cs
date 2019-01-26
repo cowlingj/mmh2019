@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Planetary : MonoBehaviour
+public class Landing
 {
-    public static void GoToPlanet(Component ship)
+    public static void LandOnPlanet()
     {
-
+        Debug.Log("Landable");
     }
 }
