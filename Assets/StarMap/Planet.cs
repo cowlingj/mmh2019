@@ -7,6 +7,13 @@ public class Planet : MonoBehaviour
 {
     public GameObject target;
 
+    public int ResourceA;
+    public int ResourceB;
+    public int ResourceC;
+
+    public string Name;
+    public string FlavorText;
+
     private bool ShouldTriggerPopUp()
     {
         Debug.Log(CrossPlatformInputManager.GetButton("Submit")
@@ -24,8 +31,8 @@ public class Planet : MonoBehaviour
 
     private void Awake()
     {
+        //ActivatePopUp = new Trigger(() => Landing.LandOnPlanet(ResourceA, ResourceB, ResourceC, Name, FlavorText), ShouldTriggerPopUp);
         ActivatePopUp = new Trigger(() => Landing.LandOnPlanet(), ShouldTriggerPopUp);
-       
     }
     public Dialog dialog;
 }
