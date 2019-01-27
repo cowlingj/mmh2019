@@ -6,33 +6,41 @@ using UnityEngine;
 public class DialogRunner
 {
     private Dialog dialog;
-    private int step = 0;
-    public DialogRunner(Dialog dialog) {
+    private DialogControls controls;
+  private int step = 0;
+  private bool dialogInProgress = false;
+
+  public DialogRunner(Dialog dialog, DialogControls controls) {
         this.dialog = dialog;
+        this.controls = controls;
+    }
+
+    public bool DialogInProgress() {
+        return dialogInProgress;
     }
 
     public void StartDialog() {
+        if (dialogInProgress) {
+            return;
+        }
+        controls.Open();
+        dialogInProgress = true;
         ContinueDialog();
     }
 
-    public void ContinueDialog() {
+    private void ContinueDialog() {
         if (step == -1) {
-            EndDialog();
+            step = 0;
+            controls.Close();
+            dialogInProgress = false;
             return;
         }
 
-        Debug.Log(dialog.steps[step].phrase);
-        foreach(Dialog.Option option in dialog.steps[step].options) {
-            Debug.Log(option.choice);
-        }
+        controls.UpdatePhrase(dialog.steps[step].phrase);
+        controls.AddOptions(dialog.steps[step].options, (int choice) => {
+            step = choice;
+            ContinueDialog();
+        });
     }
 
-    public void EndDialog() {
-        Debug.Log("End Dialog");
-    }
-
-    public void ChooseOption(int choice) {
-        step = dialog.steps[step].options[choice].newPhraseIndex;
-        ContinueDialog();
-    }
 }
