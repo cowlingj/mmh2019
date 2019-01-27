@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using UnityEngine.UI;
 
 public class Planet : MonoBehaviour
 {
@@ -13,6 +14,18 @@ public class Planet : MonoBehaviour
 
     public string Name;
     public string FlavorText;
+
+    static public GameObject nametext;
+    static public GameObject flavourtext;
+    static public GameObject resourcea;
+    static public GameObject resourceb;
+    static public GameObject resourcec;
+
+    static Text nameyboi = nametext.GetComponent<Text>();
+    static Text flavourboi = flavourtext.GetComponent<Text>();
+    static Text boioA = resourcea.GetComponent<Text>();
+    static Text boioB = resourceb.GetComponent<Text>();
+    static Text boioC = resourcec.GetComponent<Text>();
 
     private bool ShouldTriggerPopUp()
     {
@@ -31,8 +44,18 @@ public class Planet : MonoBehaviour
 
     private void Awake()
     {
-        //ActivatePopUp = new Trigger(() => Landing.LandOnPlanet(ResourceA, ResourceB, ResourceC, Name, FlavorText), ShouldTriggerPopUp);
-        ActivatePopUp = new Trigger(() => Landing.LandOnPlanet(), ShouldTriggerPopUp);
+        ActivatePopUp = new Trigger(() => LandOnPlanet(ResourceA, ResourceB, ResourceC, Name, FlavorText), ShouldTriggerPopUp);
+        //ActivatePopUp = new Trigger(() => Landing.LandOnPlanet(), ShouldTriggerPopUp);
     }
-    public Dialog dialog;
+
+    public static void LandOnPlanet(int ResourceA, int ResourceB, int ResourceC, string Name, string FlavourText)
+    //public static void LandOnPlanet()
+    {
+        Debug.Log("Landable");
+        boioA.text = ResourceA.ToString();
+        boioB.text = ResourceB.ToString();
+        boioC.text = ResourceC.ToString();
+        nameyboi.text = Name;
+        flavourboi.text = FlavourText;
+    }
 }
