@@ -13,7 +13,7 @@ public class Trigger
 
     private Action action;
     private Predicate shouldTrigger;
-    public float cooldown = 0f;
+    public float cooldown = 0.1f;
     private float timeTillUpdate;
 
     public void TestTrigger()
